@@ -2,46 +2,6 @@
 
 const input = require("readline-sync");
 
-// let word;
-// const scoringAlgorithms = [
-//    {
-//      name: "Simple", 
-//      description: "One point per character.",
-//      scorerFunction: simpleScorer(word)
-//    },
-//    {
-//      name: "Vowel Bonus", 
-//      description: "Vowels are 3 pts, consonants are 1 pt.",
-//      scorerFunction: vowelBonusScorer(word)
-//    },
-//    {
-//      name: "Scrabble", 
-//      description: "The traditional scoring algorithm.",
-//      scorerFunction: scrabbleScorer(word)
-//    }
-//  ];
-
-//  function scoringAlgorithms(word){
-//    algorithms = [
-//       {
-//         name: "Simple", 
-//         description: "One point per character.",
-//         scorerFunction: simpleScorer(word)
-//       },
-//       {
-//         name: "Vowel Bonus", 
-//         description: "Vowels are 3 pts, consonants are 1 pt.",
-//         scorerFunction: vowelBonusScorer(word)
-//       },
-//       {
-//         name: "Scrabble", 
-//         description: "The traditional scoring algorithm.",
-//         scorerFunction: scrabbleScorer(word)
-//       }
-//     ];
-//    return algorithms;
-//  }
-
 const oldPointStructure = {
    1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
    2: ['D', 'G'],
@@ -58,19 +18,19 @@ const oldPointStructure = {
     scorerPrompt(word);
  }
  
-//  function oldScrabbleScorer(word) {
-//     word = word.toUpperCase();
-//     let sum = 0;
+  function oldScrabbleScorer(word) {
+     word = word.toUpperCase();
+    let sum = 0;
   
-//     for (let i = 0; i < word.length; i++) {
-//       for (const pointValue in oldPointStructure) {
-//         if (oldPointStructure[pointValue].includes(word[i])) {
-//           sum += parseInt(pointValue);
-//         }
-//       }
-//     }
-//     return sum;
-//   }
+    for (let i = 0; i < word.length; i++) {
+      for (const pointValue in oldPointStructure) {
+        if (oldPointStructure[pointValue].includes(word[i])) {
+          sum += parseInt(pointValue);
+         }
+       }
+     }
+    return sum;
+   }
  
  // your job is to finish writing these functions and variables that we've named //
  // don't change the names or your program won't work as expected. //
@@ -84,38 +44,38 @@ const oldPointStructure = {
    
  };
  
- function scorerPrompt(word) {
+      let Alg1= {
+        name: "Simple", 
+        description: "One point per character.",
+        scorerFunction: simpleScorer
+      };
+      let Alg2 = {
+         name: "Vowel Bonus", 
+         description: "Vowels are 3 pts, consonants are 1 pt.",
+         scorerFunction: vowelBonusScorer
+      };
+      let Alg3 = {
+         name: "Scrabble", 
+         description: "The traditional scoring algorithm.",
+         scorerFunction: scrabbleScorer
+   };
+   const scoringAlgorithms= [Alg1, Alg2, Alg3];
+   function scorerPrompt( word) {
+   
    let scoringAlgorithm;
-   // let scoringAlgorithms = [
-   //   {
-   //     name: "Simple", 
-   //     description: "One point per character.",
-   //     scorerFunction: simpleScorer(word)
-   //   },
-   //   {
-   //     name: "Vowel Bonus", 
-   //     description: "Vowels are 3 pts, consonants are 1 pt.",
-   //     scorerFunction: vowelBonusScorer(word)
-   //   },
-   //   {
-   //     name: "Scrabble", 
-   //     description: "The traditional scoring algorithm.",
-   //     scorerFunction: scrabbleScorer(word)
-   //   }
-   // ];
    console.log(`Which scoring algorithm would you like to use? \n \n 0 - ${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description} \n 1 - ${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description} \n 2 - ${scoringAlgorithms[2].name}: ${scoringAlgorithms[2].description}`);
    
    scoringAlgorithm = input.question('Enter 0, 1, or 2: ');
  
-   if(scoringAlgorithm === 0){
+   if(scoringAlgorithm === 0) {
      console.log("\nalgorithm name: ", scoringAlgorithms[0].name);
      console.log("scoringFunction result: ", scoringAlgorithms[0].scorerFunction(word));
    }
-   if(scoringAlgorithm === 1){
+   if(scoringAlgorithm === 1) {
      console.log("\nalgorithm name: ", scoringAlgorithms[1].name);
      console.log("scoringFunction result: ", scoringAlgorithms[1].scorerFunction(word));
    }
-   if(scoringAlgorithm == 2){
+   if(scoringAlgorithm == 2) {
      console.log("\nalgorithm name: ", scoringAlgorithms[2].name);
      console.log("scoringFunction result: ", scoringAlgorithms[2].scorerFunction(word));
    }

@@ -39,8 +39,8 @@ const oldPointStructure = {
    let name = input.question('Enter your name:  ');
    console.log(`Hello ${name}`);
    console.log("Let's play some scrabble!\n");
-   let wordToScore = input.question(`Enter a word to score:  `);
-   return wordToScore;
+   let word = input.question(`Enter a word to score:  `);
+   return word;
    
  };
  

@@ -10,137 +10,142 @@ const oldPointStructure = {
    5: ['K'],
    8: ['J', 'X'],
    10: ['Q', 'Z']
- };
- 
- function runProgram() {
-    word = initialPrompt();
-   
-    scorerPrompt(word);
- }
- 
-  function oldScrabbleScorer(word) {
-     word = word.toUpperCase();
-    let sum = 0;
-  
-    for (let i = 0; i < word.length; i++) {
+};
+
+function runProgram() {
+   word = initialPrompt();
+
+   scorerPrompt(word);
+}
+
+function oldScrabbleScorer(word) {
+   word = word.toUpperCase();
+   let sum = 0;
+
+   for (let i = 0; i < word.length; i++) {
       for (const pointValue in oldPointStructure) {
-        if (oldPointStructure[pointValue].includes(word[i])) {
-          sum += parseInt(pointValue);
+         if (oldPointStructure[pointValue].includes(word[i])) {
+            sum += parseInt(pointValue);
          }
-       }
-     }
-    return sum;
+      }
    }
- 
- // your job is to finish writing these functions and variables that we've named //
- // don't change the names or your program won't work as expected. //
- 
- function initialPrompt() {
+   return sum;
+}
+
+// your job is to finish writing these functions and variables that we've named //
+// don't change the names or your program won't work as expected. //
+
+function initialPrompt() {
    let name = input.question('Enter your name:  ');
    console.log(`Hello ${name}`);
    console.log("Let's play some scrabble!\n");
    let word = input.question(`Enter a word to score:  `);
    return word;
-   
- };
- 
-      let Alg1= {
-        name: "Simple", 
-        description: "One point per character.",
-        scorerFunction: simpleScorer
-      };
-      let Alg2 = {
-         name: "Vowel Bonus", 
-         description: "Vowels are 3 pts, consonants are 1 pt.",
-         scorerFunction: vowelBonusScorer
-      };
-      let Alg3 = {
-         name: "Scrabble", 
-         description: "The traditional scoring algorithm.",
-         scorerFunction: scrabbleScorer
-   };
-   const scoringAlgorithms= [Alg1, Alg2, Alg3];
-   function scorerPrompt( word) {
-   
+
+};
+
+let Alg1 = {
+   name: "Simple",
+   description: "One point per character.",
+   scorerFunction: simpleScorer
+};
+let Alg2 = {
+   name: "Vowel Bonus",
+   description: "Vowels are 3 pts, consonants are 1 pt.",
+   scorerFunction: vowelBonusScorer
+};
+let Alg3 = {
+   name: "Scrabble",
+   description: "The traditional scoring algorithm.",
+   scorerFunction: scrabbleScorer
+};
+const scoringAlgorithms = [Alg1, Alg2, Alg3];
+function scorerPrompt(word) {
+
    let scoringAlgorithm;
-   console.log(`Which scoring algorithm would you like to use? \n \n 0 - ${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description} \n 1 - ${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description} \n 2 - ${scoringAlgorithms[2].name}: ${scoringAlgorithms[2].description}`);
-   
-   scoringAlgorithm = input.question('Enter 0, 1, or 2: ');
- 
-   if(scoringAlgorithm === 0) {
-     console.log("\nalgorithm name: ", scoringAlgorithms[0].name);
-     console.log("scoringFunction result: ", scoringAlgorithms[0].scorerFunction(word));
+   console.log(`Which scoring algorithm would you like to use?\n\n
+   0 - ${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description} 
+   1 - ${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description} 
+   2 - ${scoringAlgorithms[2].name}: ${scoringAlgorithms[2].description}`);
+
+   scoringAlgorithm = Number(input.question('Enter 0, 1, or 2: '));
+   //console.log(`\nScore for "${word}": ${scoringAlgorithms, word}`);
+
+   if (scoringAlgorithm === 0) {
+      console.log("\nalgorithm name: ", scoringAlgorithms[0].name);
+      console.log("scoringFunction result: ", scoringAlgorithms[0].scorerFunction(word));
    }
-   if(scoringAlgorithm === 1) {
-     console.log("\nalgorithm name: ", scoringAlgorithms[1].name);
-     console.log("scoringFunction result: ", scoringAlgorithms[1].scorerFunction(word));
+   if (scoringAlgorithm === 1) {
+      console.log("\nalgorithm name: ", scoringAlgorithms[1].name);
+      console.log("scoringFunction result: ", scoringAlgorithms[1].scorerFunction(word));
    }
-   if(scoringAlgorithm == 2) {
-     console.log("\nalgorithm name: ", scoringAlgorithms[2].name);
-     console.log("scoringFunction result: ", scoringAlgorithms[2].scorerFunction(word));
+   if (scoringAlgorithm === 2) {
+      console.log("\nalgorithm name: ", scoringAlgorithms[2].name);
+      console.log("scoringFunction result: ", scoringAlgorithms[2].scorerFunction(word));
    }
- }
- 
- function simpleScorer(word){
+}
+
+function simpleScorer(word) {
    let simpleScorePointStructure = {
-   1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T', 'D', 'G', 'B', 'C', 'M', 'P', 'F', 'H', 'V', 'W', 'Y', 'K', 'J', 'X', 'Q', 'Z']};
-      console.log("WGAT ARE YOI: ", word)
+      1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T', 'D', 'G', 'B', 'C', 'M', 'P', 'F', 'H', 'V', 'W', 'Y', 'K', 'J', 'X', 'Q', 'Z']
+   };
    word = word.toUpperCase();
    let sum = 0;
-   
-    for (let i = 0; i < word.length; i++) {
+
+   for (let i = 0; i < word.length; i++) {
       for (const pointValue in simpleScorePointStructure) {
-        if (simpleScorePointStructure[pointValue].includes(word[i])) {
-         sum += parseInt(pointValue);
-        }
-    }
- }
+         if (simpleScorePointStructure[pointValue].includes(word[i])) {
+            sum += parseInt(pointValue);
+         }
+      }
+   }
    return sum;
- }
- 
- function vowelBonusScorer(word){
+}
+
+function vowelBonusScorer(word) {
    let simpleScorePointStructure = {
-   1: ['L', 'N', 'R', 'S', 'T', 'D', 'G', 'B', 'C', 'M', 'P', 'F', 'H', 'V', 'W', 'Y', 'K', 'J', 'X', 'Q', 'Z'],
-   3: ['A', 'E', 'I', 'O', 'U']  
+      1: ['L', 'N', 'R', 'S', 'T', 'D', 'G', 'B', 'C', 'M', 'P', 'F', 'H', 'V', 'W', 'Y', 'K', 'J', 'X', 'Q', 'Z'],
+      3: ['A', 'E', 'I', 'O', 'U']
    };
- 
+
    word = word.toUpperCase();
-    let sum = 0;
-  
-    for (let i = 0; i < word.length; i++) {
+   let sum = 0;
+
+   for (let i = 0; i < word.length; i++) {
       for (const pointValue in simpleScorePointStructure) {
-        if (simpleScorePointStructure[pointValue].includes(word[i])) {
-          sum += parseInt(pointValue);
-        }
-    }
- }
+         if (simpleScorePointStructure[pointValue].includes(word[i])) {
+            sum += Number(pointValue);
+         }
+      }
+   }
    return sum;
- }
- 
- function scrabbleScorer(word){
+}
+
+function scrabbleScorer(word) {
    word = word.toLowerCase();
    let sum = 0;
- 
+
    for (let i = 0; i < word.length; i++) {
-     sum += newPointStructure[word[i]];
+      sum += Number(newPointStructure[word[i]]);
    }
    return sum;
- }
- 
- function transform(oldPointStructure) {
+}
+
+function transform(oldPointStructure) {
    let newStructure = {};
-  
-    for (const key in oldPointStructure) {
-     newKeys = oldPointStructure[key];
-     
-     for (let i = 0; i < newKeys.length; i++) {
-       newStructure[newKeys[i].toLowerCase()] = Number(key);
-     }
+
+   for (const key in oldPointStructure) {
+      newKeys = oldPointStructure[key];
+
+      for (let i = 0; i < newKeys.length; i++) {
+         newStructure[newKeys[i].toLowerCase()] = Number(key);
+      }
+
    }
    return newStructure;
- };
- 
- let newPointStructure = transform(oldPointStructure);
+};
+
+let newPointStructure = transform(oldPointStructure);
 
 
 // Don't write any code below this line //
@@ -153,7 +158,7 @@ module.exports = {
    vowelBonusScorer: vowelBonusScorer,
    scrabbleScorer: scrabbleScorer,
    newPointStructure: newPointStructure,
-	runProgram: runProgram,
-	scorerPrompt: scorerPrompt,
+   runProgram: runProgram,
+   scorerPrompt: scorerPrompt,
    scoringAlgorithms: scoringAlgorithms
 };
